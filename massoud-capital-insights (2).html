@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Massoud Capital Insights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Jost:wght@300;400;500&family=Inconsolata:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --white:     #ffffff;
+      --cream:     #f9f6f0;
+      --ink:       #1c1916;
+      --ink-mid:   #4a4540;
+      --ink-light: #8c8278;
+      --ink-faint: #bdb5ac;
+      --gold:      #b8902a;
+      --gold-pale: #f5edd8;
+      --green:     #2d6e4e;
+      --border:    #e8e0d6;
+      --border-md: #d4c9bc;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--ink);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--white);
+      border-bottom: 1px solid var(--border-md);
+      padding: 0 2rem;
+    }
+
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.25rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 2rem; }
+
+    .nav-links a {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── SHARED ── */
+    .wrap { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+    .section-label {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 6rem 2rem 5rem;
+      max-width: 900px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-eyebrow {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 2rem;
+      height: 1px;
+      background: var(--gold);
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: clamp(2.8rem, 6vw, 4.2rem);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      max-width: 640px;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--ink-light);
+      max-width: 520px;
+      line-height: 1.8;
+    }
+
+    /* ── ABOUT ── */
+    .about-section {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 2rem;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+    }
+    .about-text h2 em { font-style: italic; color: var(--gold); }
+
+    .about-text p {
+      font-size: 0.93rem;
+      color: var(--ink-mid);
+      margin-bottom: 0.9rem;
+      line-height: 1.8;
+    }
+
+    .about-card {
+      border: 1px solid var(--border-md);
+      border-top: 2px solid var(--gold);
+    }
+
+    .stat-row {
+      display: flex;
+      gap: 1.25rem;
+      padding: 1.1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-row:last-child { border-bottom: none; }
+
+    .stat-label {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      min-width: 88px;
+      padding-top: 0.15rem;
+      flex-shrink: 0;
+    }
+
+    .stat-value {
+      font-size: 0.88rem;
+      color: var(--ink-mid);
+      line-height: 1.6;
+    }
+    .stat-value strong { color: var(--ink); font-weight: 500; }
+
+    /* ── COMING SOON ── */
+    .coming-section {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .coming-intro {
+      font-size: 0.93rem;
+      color: var(--ink-light);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    .upcoming-list {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid var(--border);
+    }
+
+    .upcoming-item {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .upcoming-week {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      color: var(--ink-faint);
+      min-width: 60px;
+      flex-shrink: 0;
+    }
+
+    .upcoming-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+    .upcoming-title em { font-style: italic; color: var(--gold); }
+
+    .upcoming-tag {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      border: 1px solid var(--border-md);
+      padding: 0.18rem 0.55rem;
+      margin-left: auto;
+      flex-shrink: 0;
+      align-self: center;
+    }
+
+    /* ── FRAMEWORK ── */
+    .framework-section {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .framework-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border-md);
+    }
+
+    .fw-item {
+      background: var(--white);
+      padding: 2rem;
+    }
+
+    .fw-item-green {
+      background: #f0f7f3;
+      grid-column: 1 / -1;
+      border-top: 2px solid var(--green);
+    }
+
+    .fw-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: rgba(184,144,42,0.18);
+      line-height: 1;
+      margin-bottom: 0.6rem;
+    }
+
+    .fw-num-green {
+      color: rgba(45,110,78,0.18);
+    }
+
+    .fw-name {
+      font-family: 'Jost', sans-serif;
+      font-weight: 500;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .fw-name-green { color: var(--green); }
+
+    .fw-desc {
+      font-size: 0.82rem;
+      color: var(--ink-light);
+      line-height: 1.65;
+    }
+
+    /* ── FULL POST ── */
+    .post-section {
+      padding: 5rem 0;
+      border-top: 1px solid var(--border);
+      background: var(--cream);
+    }
+
+    .post-section .wrap { max-width: 760px; }
+
+    .post-header {
+      padding-bottom: 2rem;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .post-header-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .post-cat {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--ink);
+      padding: 0.25rem 0.65rem;
+    }
+
+    .post-week-label {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    .verdict-pill {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.22rem 0.65rem;
+      margin-left: auto;
+      background: var(--gold-pale);
+      color: var(--gold);
+      border: 1px solid #e4cfa0;
+    }
+
+    .post-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 2.4rem;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+    .post-header h1 em { font-style: italic; color: var(--gold); }
+
+    .post-byline {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    .post-body h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: var(--ink);
+      margin: 2.5rem 0 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .snum {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.57rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      background: var(--gold-pale);
+      padding: 0.18rem 0.45rem;
+      border: 1px solid #e4cfa0;
+      text-transform: uppercase;
+    }
+
+    .post-body p {
+      font-size: 0.92rem;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 0.9rem;
+    }
+    .post-body p strong { color: var(--ink); font-weight: 500; }
+
+    .post-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0 1.5rem;
+      font-size: 0.84rem;
+    }
+    .post-table th {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      border-bottom: 2px solid var(--border-md);
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+    }
+    .post-table td {
+      padding: 0.6rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--ink-mid);
+    }
+    .post-table tr:last-child td { border-bottom: none; }
+    .post-table td strong { color: var(--ink); font-weight: 500; }
+
+    .verdict-box {
+      border-left: 3px solid var(--gold);
+      background: var(--gold-pale);
+      padding: 1.4rem 1.6rem;
+      margin: 1.75rem 0;
+    }
+    .verdict-box-label {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .verdict-box p { font-size: 0.9rem; color: var(--ink); margin: 0; line-height: 1.75; }
+
+    .risk-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #fdf0f0;
+      border: 1px solid #e8c4c4;
+      border-left: 3px solid #8b2e2e;
+      padding: 0.75rem 1.25rem;
+      margin: 0.5rem 0 1.25rem;
+    }
+    .risk-badge-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #8b2e2e;
+      line-height: 1;
+    }
+    .risk-badge-label {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8b2e2e;
+    }
+
+    .learned-box {
+      border-left: 3px solid var(--green);
+      background: #eef7f2;
+      padding: 1.6rem;
+      margin-top: 2.5rem;
+    }
+    .learned-box-label {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 1.1rem;
+    }
+    .learned-box p {
+      font-size: 0.88rem;
+      color: var(--ink-mid);
+      line-height: 1.8;
+      margin-bottom: 0.75rem;
+    }
+    .learned-box p:last-child { margin-bottom: 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--cream);
+      border-top: 1px solid var(--border-md);
+      padding: 2.5rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .footer-disc {
+      font-size: 0.7rem;
+      color: var(--ink-faint);
+      max-width: 420px;
+      line-height: 1.6;
+      text-align: right;
+    }
+
+    /* ── ANIMATIONS ── */
+    .hero  { animation: rise 0.55s ease both; }
+    .about-section { animation: rise 0.55s 0.05s ease both; }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 720px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .framework-grid { grid-template-columns: 1fr; }
+      .fw-item-green { grid-column: 1; }
+      .upcoming-tag { display: none; }
+      .footer-inner { flex-direction: column; }
+      .footer-disc { text-align: left; max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">Massoud Capital</a>
+    <div class="nav-links">
+      <a href="#analyses">Analyses</a>
+      <a href="#framework">Framework</a>
+      <a href="#about">About</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Weekly Stocks &amp; Business Analysis</div>
+  <h1>Building a Mind<br>for <em>the Markets.</em></h1>
+  <p class="hero-desc">One stock or business broken down per week — moat, financials, bull and bear cases, a clear verdict, and everything I'm learning along the way. First post drops soon.</p>
+</div>
+
+<!-- ANALYSES / COMING SOON -->
+<section class="coming-section" id="analyses">
+  <div class="wrap">
+    <div class="section-label">Analyses</div>
+    <p class="coming-intro">The first analysis is live. Every post follows the same 7-step framework so you always know what you're getting.</p>
+
+    <div class="upcoming-list">
+
+      <div class="upcoming-item">
+        <span class="upcoming-week">Week 01</span>
+        <span class="upcoming-title"><em>Palantir</em> — Visionary Tech Company or Overvalued Hype?</span>
+        <a href="palantir.html" class="upcoming-tag" style="color: var(--gold); border-color: #e4cfa0; background: var(--gold-pale); text-decoration: none;">Read</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FRAMEWORK -->
+<section class="framework-section" id="framework">
+  <div class="wrap">
+    <div class="section-label">The Framework</div>
+    <div class="framework-grid">
+
+      <div class="fw-item">
+        <div class="fw-num">01</div>
+        <div class="fw-name">Business Overview</div>
+        <div class="fw-desc">What does the company do, how does it earn money, and who is the customer? If I can't explain it simply, I don't understand it yet.</div>
+      </div>
+
+      <div class="fw-item">
+        <div class="fw-num">02</div>
+        <div class="fw-name">Competitive Moat</div>
+        <div class="fw-desc">Porter's Five Forces and Helmer's 7 Powers. Rated weak, moderate, or strong — with a clear reason why. What keeps competitors out and how durable is that edge?</div>
+      </div>
+
+      <div class="fw-item">
+        <div class="fw-num">03</div>
+        <div class="fw-name">Financial Snapshot</div>
+        <div class="fw-desc">Revenue growth over 5 years, margins, ROIC, P/E ratio vs. sector average, and debt-to-equity health check. Not just one year — I look for the direction of travel.</div>
+      </div>
+
+      <div class="fw-item">
+        <div class="fw-num">04</div>
+        <div class="fw-name">Risk Rating</div>
+        <div class="fw-desc">A score from 1 to 10 with clear reasoning — accounting for business risk, valuation risk, macro exposure, and anything specific to the company that could go wrong.</div>
+      </div>
+
+      <div class="fw-item">
+        <div class="fw-num">05</div>
+        <div class="fw-name">Bull &amp; Bear Case</div>
+        <div class="fw-desc">Both sides argued honestly and in full. No softening the bear case to protect a thesis. Each side gets a fair hearing before I take a stance.</div>
+      </div>
+
+      <div class="fw-item">
+        <div class="fw-num">06</div>
+        <div class="fw-name">Verdict &amp; What to Watch</div>
+        <div class="fw-desc">A clear, defensible position — no "it depends." Followed by the two or three specific metrics or events that would change my view entirely.</div>
+      </div>
+
+      <div class="fw-item fw-item-green">
+        <div class="fw-num fw-num-green">07</div>
+        <div class="fw-name fw-name-green">What I Learned</div>
+        <div class="fw-desc">Every post ends with what I genuinely took away — concepts I had to look up, assumptions I had to challenge, and questions I still can't answer. This section is for me, and for anyone else building their thinking from scratch alongside me.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="wrap">
+    <div class="section-label">About</div>
+    <div class="about-grid">
+
+      <div class="about-text">
+        <h2>I'm Hamzeh.<br><em>This is my thinking in public.</em></h2>
+        <p>I'm 17, based in Southlake, Texas, and I'm working toward a career in finance — private equity, hedge funds, or wherever my thinking takes me. I started this blog because I believe the best way to build real analytical skill is to do it out loud — with real stocks, real businesses, real theses, and real accountability.</p>
+        <p>Every week I pick a company, break it down using a consistent framework, and publish the full analysis here. The goal isn't to always be right. It's to develop the discipline, the vocabulary, and the judgment that serious investing demands.</p>
+        <p>Every post ends with what I actually learned that week. That section keeps me honest.</p>
+      </div>
+
+      <div class="about-card">
+        <div class="stat-row">
+          <span class="stat-label">Age</span>
+          <span class="stat-value"><strong>17</strong> — Southlake Carroll Senior High School</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Goal</span>
+          <span class="stat-value">Career in <strong>finance</strong> — investing, private equity, or capital markets</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Background</span>
+          <span class="stat-value">Founder of <strong>Service Max</strong>, <strong>Novora</strong>, and <strong>Heartful Helpers</strong> (nonprofit). Interned at <strong>Bayshore Grove Capital</strong>.</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Cadence</span>
+          <span class="stat-value">One analysis published every week, starting soon.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-name">Massoud Capital Insights</div>
+    <div class="footer-disc">For educational purposes only. Nothing here is financial or investment advice. All views are personal opinions and a learning process in progress.</div>
+  </div>
+</footer>
+
+</body>
+</html>
