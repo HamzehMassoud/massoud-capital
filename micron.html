@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="google-site-verification" content="UgaBGVRYDP7nEkf_pfd76sLm7hrtjB-5-m1C9Rq9w8U" />
+  <title>Micron — Massoud Capital Insights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Jost:wght@300;400;500&family=Inconsolata:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --white:     #ffffff;
+      --cream:     #f9f6f0;
+      --ink:       #1c1916;
+      --ink-mid:   #4a4540;
+      --ink-light: #8c8278;
+      --ink-faint: #bdb5ac;
+      --gold:      #b8902a;
+      --gold-pale: #f5edd8;
+      --green:     #2d6e4e;
+      --red:       #8b2e2e;
+      --border:    #e8e0d6;
+      --border-md: #d4c9bc;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--ink);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--white);
+      border-bottom: 1px solid var(--border-md);
+      padding: 0 2rem;
+    }
+
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.25rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .back-link {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--gold); }
+
+    /* ── WRAP ── */
+    .wrap {
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ── POST HEADER ── */
+    .post-header {
+      padding: 5rem 0 2.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3rem;
+    }
+
+    .post-header-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .post-cat {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--ink);
+      padding: 0.25rem 0.65rem;
+    }
+
+    .post-week-label {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    .verdict-pill {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.22rem 0.65rem;
+      margin-left: auto;
+      background: var(--gold-pale);
+      color: var(--gold);
+      border: 1px solid #e4cfa0;
+    }
+
+    .post-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+    .post-header h1 em { font-style: italic; color: var(--gold); }
+
+    .post-byline {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    /* ── POST BODY ── */
+    .post-body { padding-bottom: 5rem; }
+
+    .post-body h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: var(--ink);
+      margin: 2.5rem 0 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .snum {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.57rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      background: var(--gold-pale);
+      padding: 0.18rem 0.45rem;
+      border: 1px solid #e4cfa0;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .post-body p {
+      font-size: 0.93rem;
+      color: var(--ink-mid);
+      line-height: 1.9;
+      margin-bottom: 1rem;
+    }
+    .post-body p strong { color: var(--ink); font-weight: 500; }
+
+    /* ── TABLE ── */
+    .post-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0 1.5rem;
+      font-size: 0.84rem;
+    }
+    .post-table th {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      border-bottom: 2px solid var(--border-md);
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+    }
+    .post-table td {
+      padding: 0.65rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--ink-mid);
+    }
+    .post-table tr:last-child td { border-bottom: none; }
+    .post-table td strong { color: var(--ink); font-weight: 500; }
+
+    /* ── RISK BADGE ── */
+    .risk-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: #fdf0f0;
+      border: 1px solid #e8c4c4;
+      border-left: 3px solid var(--red);
+      padding: 0.75rem 1.5rem;
+      margin: 0.5rem 0 1.5rem;
+    }
+    .risk-badge-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--red);
+      line-height: 1;
+    }
+    .risk-badge-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .risk-badge-label {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+    .risk-badge-sub {
+      font-size: 0.78rem;
+      color: var(--ink-light);
+      margin-top: 0.1rem;
+    }
+
+    /* ── VERDICT ── */
+    .verdict-box {
+      border-left: 3px solid var(--gold);
+      background: var(--gold-pale);
+      padding: 1.5rem 1.75rem;
+      margin: 2rem 0;
+    }
+    .verdict-box-label {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .verdict-box p { font-size: 0.91rem; color: var(--ink); margin: 0; line-height: 1.8; }
+
+    /* ── LEARNED ── */
+    .learned-box {
+      border-left: 3px solid var(--green);
+      background: #eef7f2;
+      padding: 1.75rem;
+      margin-top: 2.5rem;
+    }
+    .learned-box-label {
+      font-family: 'Inconsolata', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 1.25rem;
+    }
+    .learned-box p {
+      font-size: 0.9rem;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin-bottom: 0.85rem;
+    }
+    .learned-box p:last-child { margin-bottom: 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--cream);
+      border-top: 1px solid var(--border-md);
+      padding: 2.5rem 2rem;
+    }
+    .footer-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    .footer-disc {
+      font-size: 0.7rem;
+      color: var(--ink-faint);
+      max-width: 420px;
+      line-height: 1.6;
+      text-align: right;
+    }
+
+    /* ── ANIMATION ── */
+    .post-header { animation: rise 0.55s ease both; }
+    .post-body   { animation: rise 0.55s 0.08s ease both; }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .verdict-pill { margin-left: 0; }
+      .footer-inner { flex-direction: column; }
+      .footer-disc { text-align: left; max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">Massoud Capital</a>
+    <a href="index.html" class="back-link">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      All Analyses
+    </a>
+  </div>
+</nav>
+
+<!-- POST -->
+<div class="wrap">
+
+  <div class="post-header">
+    <div class="post-header-meta">
+      <span class="post-cat">Semiconductors</span>
+      <span class="post-week-label">Week 05 · April 2026</span>
+      <span class="verdict-pill">Buy on Weakness</span>
+    </div>
+    <h1><em>Micron Technology</em> — The Question Every Memory Bull Has to Answer</h1>
+    <div class="post-byline">By Hamzeh Massoud · Massoud Capital Insights · 14 min read</div>
+  </div>
+
+  <div class="post-body">
+
+    <h3><span class="snum">§ 01</span> Business Overview</h3>
+    <p>Micron makes memory. Specifically, two types: DRAM (Dynamic Random-Access Memory), which is the short-term working memory that processors pull data from in real time, and NAND flash, which is longer-term storage. Together they account for nearly all of Micron's $37.4 billion in FY2025 revenue, which more than doubled from $15.5 billion in FY2023.</p>
+    <p>The business has three reportable units. Compute and Networking, which serves data centers, cloud providers, and AI workloads, is now the largest and fastest-growing. Mobile covers smartphones and consumer devices. Embedded serves automotive, industrial, and edge applications. The mix has shifted dramatically toward data center in the last two years, because of one product: High Bandwidth Memory, or HBM.</p>
+    <p>HBM is the reason Micron is a fundamentally different conversation today than it was in 2022. Traditional DRAM sits beside a processor and moves data across a narrow bus. HBM stacks DRAM chips vertically in a single package and connects them to the processor through thousands of tiny wires, delivering roughly 10 times the data throughput at significantly lower power consumption. Every major AI accelerator — Nvidia's Blackwell GPUs, AMD's MI350X — requires it. A single Nvidia GB200 server rack contains up to 13.4 terabytes of HBM content. The previous generation H100, released just two years earlier, contained 640 gigabytes. That is a 20-fold increase in memory content per rack across two generations.</p>
+    <p>Micron's most recent quarter, Q2 FY2026 reported in March 2026, came in at $13.64 billion in revenue, a 57% year-over-year increase. EPS was $12.20 against an estimate of $9.19, a 33% beat. Q3 FY2026 guidance called for $18.7 billion in revenue, which would be another record. The stock hit an all-time high of $471.25 immediately after that report before pulling back to around $379 as of early April 2026.</p>
+    <p>The central analytical question is not whether business is good right now. It obviously is. The question is whether what is happening to Micron is a cyclical boom that will reverse on schedule, or whether AI has structurally changed the memory demand equation in a way that makes the old cycles unreliable guides.</p>
+
+    <h3><span class="snum">§ 02</span> Competitive Moat · <em style="font-style:italic; color:var(--gold); font-family:'Cormorant Garamond',serif; font-size:1rem; font-weight:500;">Moderate</em></h3>
+    <p>Micron operates in an oligopoly, which is the most important structural fact about this business. Three companies control more than 95% of global DRAM production: Samsung, SK Hynix, and Micron. Getting into this market is not a matter of hiring good engineers and building a factory. A leading-edge DRAM fab costs $10 to $20 billion to construct, takes four to five years to reach full production, and requires process technology that only these three companies have successfully developed at scale. There are no credible new entrants. Chinese manufacturers have been trying to close the gap for years and remain multiple generations behind.</p>
+    <p>Within that oligopoly, Micron has something it has not had in recent memory: a genuine technology lead in the most important product category. SK Hynix was first to market with HBM3E, but Micron's 12-layer, 36 gigabyte HBM3E product offers 30% lower power consumption than competitors. In AI data centers where power costs are a real operational constraint, that matters. Samsung has struggled with HBM3E yields throughout 2024 and 2025, which opened market share to both Hynix and Micron. Micron's HBM revenue grew more than fivefold in FY2025, crossing $2 billion in Q4 alone.</p>
+    <p>The geographic dimension is also real, not just a talking point. Micron is the only major memory chipmaker headquartered in the United States. In an environment where governments and hyperscalers are increasingly focused on supply chain resilience, that creates procurement preference and policy support that Samsung and SK Hynix cannot replicate. The CHIPS Act directed meaningful funding toward domestic semiconductor manufacturing, and Micron is building a new fab in Idaho and an advanced packaging facility in Singapore specifically to meet AI demand.</p>
+    <p>The moat earns a Moderate rather than Strong rating for one reason. Memory, even in an oligopoly, remains structurally commodity-like at the product level. HBM3E is differentiated today. HBM4, which enters mass production in late 2026, will be the new battleground, and Samsung and SK Hynix will both compete for that share. Differentiation in memory is real but temporary. You have to keep winning it.</p>
+
+    <h3><span class="snum">§ 03</span> Financial Snapshot</h3>
+    <p>That table below is the entire bull and bear case in four rows. Revenue fell 49% from FY2022 to FY2023. Gross margin went from 45% to negative 9%. Net income swung from $8.7 billion profit to $5.8 billion loss in a single fiscal year. This was not a company having a bad quarter. This was the memory downcycle arriving on schedule.</p>
+
+    <table class="post-table">
+      <thead>
+        <tr>
+          <th>Fiscal Year</th>
+          <th>Revenue</th>
+          <th>GAAP Net Income</th>
+          <th>Gross Margin</th>
+          <th>Net Margin</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>FY2022</td><td>$30.76B</td><td>$8.69B</td><td>45.2%</td><td>28.3%</td></tr>
+        <tr><td>FY2023</td><td>$15.54B</td><td>($5.83B)</td><td>(9.1%)</td><td>(37.5%)</td></tr>
+        <tr><td>FY2024</td><td>$25.11B</td><td>$0.78B</td><td>22.4%</td><td>3.1%</td></tr>
+        <tr><td><strong>FY2025</strong></td><td><strong>$37.38B</strong></td><td><strong>$8.54B</strong></td><td><strong>39.8%</strong></td><td><strong>22.9%</strong></td></tr>
+      </tbody>
+    </table>
+
+    <p>Then the recovery. Revenue nearly doubled from FY2023 to FY2025. Gross margin went from negative 9% to roughly 40%, because AI demand absorbed supply, pricing firmed, and HBM's premium economics began to dominate the mix.</p>
+    <p>The most recent data is even more striking. Q2 FY2026 non-GAAP gross margin guidance came in at 68%. Management guided Q3 FY2026 revenue at $18.7 billion. If Micron delivers that number, it will have grown revenue from $3.75 billion per quarter at the trough in FY2023 to $18.7 billion in a single quarter three years later. That is five times the revenue at peak cycle, not a modest recovery.</p>
+    <p>ROIC is currently around 25 to 30%, recovering from deeply negative territory in FY2023. The direction of travel is sharply upward, which makes sense because ROIC in cyclical businesses compresses during oversupply and expands during undersupply. The question is whether Micron's returns stay elevated longer this cycle than previous ones.</p>
+    <p>Valuation: MU trades around $379 with a forward P/E of roughly 10 to 12x on FY2026 consensus estimates. That is cheap for a company growing revenue at 57% year over year. The market is applying a discount because it does not trust the cycle. The analyst consensus price target is $464.61, with one street-high target of $825 published last week. That spread reflects a genuine disagreement about duration, not just magnitude.</p>
+    <p>Micron guided $20 billion in capital expenditure for FY2026. That is capital-intensive even by semiconductor standards, and it is weighted to the second half of the year. Free cash flow will be negative in the near term as that spending ramps. This is worth noting because it constrains shareholder returns and adds execution risk if the demand environment softens before the new capacity is fully booked.</p>
+
+    <h3><span class="snum">§ 04</span> Risk Rating</h3>
+    <div class="risk-badge">
+      <span class="risk-badge-num">7</span>
+      <div class="risk-badge-text">
+        <span class="risk-badge-label">out of 10</span>
+        <span class="risk-badge-sub">Elevated — cycle risk, Samsung re-entry, capital intensity, tariff exposure</span>
+      </div>
+    </div>
+    <p><strong>The cycle has not been repealed.</strong> Three decades of memory market history follow the same pattern: demand-driven boom, manufacturer over-investment, supply flood, price crash, red ink. Revenue declines of 25 to 50%, margin compression from peak levels above 50% to negative, stock declines of 50 to 60% that lead the fundamental turn by one to two quarters. This happened in 2019 and again in 2022 to 2023. Each time, bulls argued the cycle was different. It was not. The honest question for the current cycle is whether AI demand is large enough and sustained enough to absorb new supply without triggering the usual glut. Micron is spending $20 billion in capex in FY2026 alone. Samsung and SK Hynix are not standing still. When new HBM4 capacity from all three producers comes online in 2027 and 2028, the supply picture changes materially. If AI infrastructure spending by hyperscalers moderates even slightly, the market could tip back into oversupply faster than the current consensus implies.</p>
+    <p><strong>Tariff and China exposure.</strong> Micron's Q1 FY2026 earnings call explicitly noted that tariff impacts were not included in their guidance. China has been a significant revenue market for Micron historically, and geopolitical risk there is real and not fully quantifiable. A reversal of current chip export policies, or retaliatory restrictions from Beijing, could remove a meaningful demand source with little notice.</p>
+    <p><strong>Concentration risk at the customer level.</strong> Micron's HBM revenue is heavily dependent on a small number of hyperscaler customers, primarily Nvidia and its downstream cloud customers. If Nvidia's shipment schedule slips, if a major hyperscaler pulls back on data center build-out spending, or if a competitor's next-generation GPU uses materially less memory than expected, Micron's HBM order book weakens quickly.</p>
+    <p><strong>Capital intensity at scale.</strong> $20 billion in FY2026 capex means Micron is making large bets on sustained demand well before that capacity goes productive. If the cycle turns before the fabs are full, Micron carries both the depreciation load and weakening pricing simultaneously — which is exactly the dynamic that produced the FY2023 loss.</p>
+    <p>The risk is 7 because all of these are real, the cycle evidence is hard to argue with, and the $20 billion capex commitment locks in exposure. It is not an 8 or 9 because the HBM supply situation is genuinely different from previous commodity DRAM cycles, and the oligopoly structure gives the big three more pricing discipline than the industry had in earlier downturns.</p>
+
+    <h3><span class="snum">§ 05</span> Bull vs. Bear</h3>
+    <p><strong>Bull case:</strong> AI servers consume memory at a scale that has no historical precedent. The B300 server contains 288 gigabytes of HBM, which is 3.5 times more than the H100 from two years earlier. An NVL72 rack configuration contains up to 21.7 terabytes of HBM, versus 640 gigabytes in the DGX H100. Each GPU generation is not a minor step up in memory requirements. It is a multiplication. Micron forecasts the HBM total addressable market growing from $35 billion in 2025 to $100 billion in 2028, a 40% CAGR. The entire HBM production calendar for 2026 is already sold out across all three suppliers. Micron has finalized all 2026 HBM price and volume agreements. That is not a speculative demand forecast. It is a contracted revenue backlog.</p>
+    <p>The oligopoly is also better at supply discipline than it was a decade ago. During the 2023 downcycle, Micron and SK Hynix both cut production rather than fighting for share at negative margins. Samsung was slower to cut, but the industry response was more coordinated than in previous cycles. If the big three manage supply rationally into any future softness, the trough will be shallower than FY2023, not deeper. At 10 to 12x forward earnings on FY2026 estimates, the market is paying almost nothing for the HBM growth story. A company guiding $18.7 billion in quarterly revenue that still trades at cyclical trough multiples is either cheap or a trap.</p>
+    <p><strong>Bear case:</strong> Every prior cycle ended with the same setup that exists today: strong demand, sold-out capacity, record margins, and management confidence that this time is different. In 2018, Micron reported $30.4 billion in revenue and 45% gross margins. By FY2023 it was losing $5.8 billion on $15.5 billion in revenue. The amplitude of the swing was not predicted by the consensus at the peak.</p>
+    <p>The bear case does not require AI demand to disappear. It only requires AI infrastructure spending to pause or moderate in 2027 while new HBM4 capacity from all three suppliers comes online simultaneously. Supply does not have to flood the market. It only has to grow faster than demand for two or three quarters, and pricing breaks. Micron's margins go from 68% back toward 30% quickly because memory pricing is set at the margin, not on a cost-plus basis. At a $20 billion capex run rate, Micron is building for a demand environment that needs to persist for years to justify the investment. If it does not, the company enters the next downcycle with more fixed cost and more depreciation load than any prior cycle.</p>
+
+    <div class="verdict-box">
+      <div class="verdict-box-label">◆ Verdict</div>
+      <p>The business is performing at a level that is genuinely extraordinary. Revenue growing 57% year over year, gross margins at 68%, a sold-out HBM order book through 2026, and a technology position in HBM3E that is arguably the best Micron has ever held in a high-growth memory category. At 10 to 12x forward earnings, none of that is priced in generously.</p>
+      <p style="margin-top: 0.75rem;">The reason the entry range is below current prices is the cycle history. Buying Micron at peak margin and peak multiple is how investors ended up down 56% in 2018. The stock typically leads the fundamental turn by one to two quarters. If the HBM demand story remains intact and the stock pulls back toward $280 to $320 on macro noise or tariff concerns, that is a meaningfully better entry than $379 with less cyclical timing risk.</p>
+      <p style="margin-top: 0.75rem;"><strong>Buy on Weakness. Entry interest: $280 to $320.</strong> At that range — roughly 7 to 9x forward earnings — you are paying for a company that is the sole U.S.-based HBM supplier, has contracted revenue through 2026, and operates in a market growing at 40% CAGR. That is a margin of safety the current price does not offer.</p>
+    </div>
+
+    <h3><span class="snum">§ 06</span> What to Watch</h3>
+    <p><strong>HBM pricing in Q3 and Q4 FY2026 commentary.</strong> If Micron starts flagging pricing pressure in HBM or notes that customers are pushing back on 2027 volume commitments, that is the earliest warning that the cycle is turning. It will likely show up in management commentary before it shows up in the revenue line.</p>
+    <p><strong>Samsung's HBM3E yield progress.</strong> Samsung has been losing share because of quality and yield problems. If those resolve in the second half of 2026 and Samsung re-enters HBM competition at full volume, the supply picture changes. Watch Samsung earnings calls for any commentary on HBM ramp.</p>
+    <p><strong>Hyperscaler capex guidance.</strong> Micron's order book is only as durable as the hyperscalers' willingness to keep building data centers. Microsoft, Google, Amazon, and Meta all report quarterly and give capex guidance. Any meaningful reduction in those forecasts is a leading indicator for HBM demand softening.</p>
+    <p><strong>Tariff developments.</strong> Management explicitly excluded tariff impacts from guidance. With the Iran cease-fire bringing some macro relief as of early April 2026, the risk has moderated slightly, but it has not been removed.</p>
+
+    <div class="learned-box">
+      <div class="learned-box-label">§ 07 · What I Learned</div>
+      <p>This analysis introduced the concept of commodity pricing at the margin. In most industries, a product's price is roughly anchored to its cost of production plus a margin. Memory does not work that way. DRAM and NAND prices are set by the marginal unit of supply in the market. When demand outpaces supply by even a small amount, prices rise sharply across the entire volume. When supply exceeds demand by even a small amount, prices fall sharply across the entire volume, regardless of what it cost to make the chips.</p>
+      <p>This is why Micron's gross margin can go from negative 9% to 68% in three years without the underlying cost structure changing dramatically. The cost per gigabyte of production falls slowly over time as process technology improves. But the selling price swings violently based on supply-demand balance. In the FY2023 downcycle, Micron was selling chips for less than it cost to make them, because the market price fell below variable production cost. In the current cycle, it is selling chips at prices that imply 68% gross margin because supply is structurally short.</p>
+      <p>Understanding this mechanism is the key to everything in this analysis. The bull case is not that Micron is a great business in the traditional sense. It is that AI has created a demand shock large enough to keep supply tight for longer than the historical cycle duration, which keeps prices elevated, which makes the margins and earnings look unlike anything in Micron's prior history. The bear case is not that Micron is a bad business. It is that marginal pricing always turns, and when it does, the speed of the reversal is faster than most investors expect.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-name">Massoud Capital Insights</div>
+    <div class="footer-disc">For educational purposes only. Nothing here is financial or investment advice. All views are personal opinions and a learning process in progress.</div>
+  </div>
+</footer>
+
+</body>
+</html>
